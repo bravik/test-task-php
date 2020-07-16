@@ -96,7 +96,7 @@ class ListMembersController extends Controller
         $member = $this->getListMember($memberId);
 
         $validator = $this->getValidationFactory()->make(
-            $request->all(),
+            array_merge_recursive($member->toMailChimpArray(), $request->all()),
             $member->getValidationRules()
         );
 
